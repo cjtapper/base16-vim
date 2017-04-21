@@ -2,7 +2,7 @@
 
 " base16-vim (https://github.com/chriskempson/base16-vim)
 " by Chris Kempson (http://chriskempson.com)
-" IR Black scheme by Timothée Poisot (http://timotheepoisot.fr)
+" Gruvbox dark, medium scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 
 " This enables the coresponding base16-shell script to run so that
 " :colorscheme works in terminals supported by base16-shell scripts
@@ -10,27 +10,27 @@
 "   let g:base16_shell_path=base16-builder/output/shell/
 if !has('gui_running')
   if exists("g:base16_shell_path")
-    execute "silent !/bin/sh ".g:base16_shell_path."/base16-ir-black.sh"
+    execute "silent !/bin/sh ".g:base16_shell_path."/base16-gruvbox-dark-medium.sh"
   endif
 endif
 
 " GUI color definitions
-let s:gui00 = "000000"
-let s:gui01 = "242422"
-let s:gui02 = "484844"
-let s:gui03 = "6c6c66"
-let s:gui04 = "918f88"
-let s:gui05 = "b5b3aa"
-let s:gui06 = "d9d7cc"
-let s:gui07 = "fdfbee"
-let s:gui08 = "ff6c60"
-let s:gui09 = "e9c062"
-let s:gui0A = "ffffb6"
-let s:gui0B = "a8ff60"
-let s:gui0C = "c6c5fe"
-let s:gui0D = "96cbfe"
-let s:gui0E = "ff73fd"
-let s:gui0F = "b18a3d"
+let s:gui00 = "282828"
+let s:gui01 = "3c3836"
+let s:gui02 = "504945"
+let s:gui03 = "665c54"
+let s:gui04 = "bdae93"
+let s:gui05 = "d5c4a1"
+let s:gui06 = "ebdbb2"
+let s:gui07 = "fbf1c7"
+let s:gui08 = "fb4934"
+let s:gui09 = "fe8019"
+let s:gui0A = "fabd2f"
+let s:gui0B = "b8bb26"
+let s:gui0C = "8ec07c"
+let s:gui0D = "83a598"
+let s:gui0E = "d3869b"
+let s:gui0F = "d65d0e"
 
 " Terminal color definitions
 let s:cterm00 = "00"
@@ -59,10 +59,36 @@ else
   let s:cterm0F = "14"
 endif
 
+" Neovim terminal colours
+if has("nvim")
+  let g:terminal_color_0 =  "#282828"
+  let g:terminal_color_1 =  "#fb4934"
+  let g:terminal_color_2 =  "#b8bb26"
+  let g:terminal_color_3 =  "#fabd2f"
+  let g:terminal_color_4 =  "#83a598"
+  let g:terminal_color_5 =  "#d3869b"
+  let g:terminal_color_6 =  "#8ec07c"
+  let g:terminal_color_7 =  "#d5c4a1"
+  let g:terminal_color_8 =  "#665c54"
+  let g:terminal_color_9 =  "#fe8019"
+  let g:terminal_color_10 = "#3c3836"
+  let g:terminal_color_11 = "#504945"
+  let g:terminal_color_12 = "#bdae93"
+  let g:terminal_color_13 = "#ebdbb2"
+  let g:terminal_color_14 = "#d65d0e"
+  let g:terminal_color_15 = "#fbf1c7"
+  let g:terminal_color_background = g:terminal_color_0
+  let g:terminal_color_foreground = g:terminal_color_7
+  if &background == "light"
+    let g:terminal_color_background = g:terminal_color_7
+    let g:terminal_color_foreground = g:terminal_color_2
+  endif
+endif
+
 " Theme setup
 hi clear
 syntax reset
-let g:colors_name = "base16-ir-black"
+let g:colors_name = "base16-gruvbox-dark-medium"
 
 " Highlighting function
 fun <sid>hi(group, guifg, guibg, ctermfg, ctermbg, attr, guisp)
@@ -95,14 +121,14 @@ call <sid>hi("ErrorMsg",      s:gui08, s:gui00, s:cterm08, s:cterm00, "", "")
 call <sid>hi("Exception",     s:gui08, "", s:cterm08, "", "", "")
 call <sid>hi("FoldColumn",    s:gui0C, s:gui01, s:cterm0C, s:cterm01, "", "")
 call <sid>hi("Folded",        s:gui03, s:gui01, s:cterm03, s:cterm01, "", "")
-call <sid>hi("IncSearch",     s:gui01, s:gui0A, s:cterm01, s:cterm0A, "none", "")
+call <sid>hi("IncSearch",     s:gui01, s:gui09, s:cterm01, s:cterm09, "none", "")
 call <sid>hi("Italic",        "", "", "", "", "none", "")
 call <sid>hi("Macro",         s:gui08, "", s:cterm08, "", "", "")
-call <sid>hi("MatchParen",    s:gui00, s:gui03, s:cterm00, s:cterm03,  "", "")
+call <sid>hi("MatchParen",    "", s:gui03, "", s:cterm03,  "", "")
 call <sid>hi("ModeMsg",       s:gui0B, "", s:cterm0B, "", "", "")
 call <sid>hi("MoreMsg",       s:gui0B, "", s:cterm0B, "", "", "")
 call <sid>hi("Question",      s:gui0D, "", s:cterm0D, "", "", "")
-call <sid>hi("Search",        s:gui01, s:gui0A, s:cterm01, s:cterm0A,  "", "")
+call <sid>hi("Search",        s:gui03, s:gui0A, s:cterm03, s:cterm0A,  "", "")
 call <sid>hi("SpecialKey",    s:gui03, "", s:cterm03, "", "", "")
 call <sid>hi("TooLong",       s:gui08, "", s:cterm08, "", "", "")
 call <sid>hi("Underlined",    s:gui08, "", s:cterm08, "", "", "")
@@ -123,7 +149,7 @@ call <sid>hi("VertSplit",     s:gui02, s:gui02, s:cterm02, s:cterm02, "none", ""
 call <sid>hi("ColorColumn",   "", s:gui01, "", s:cterm01, "none", "")
 call <sid>hi("CursorColumn",  "", s:gui01, "", s:cterm01, "none", "")
 call <sid>hi("CursorLine",    "", s:gui01, "", s:cterm01, "none", "")
-call <sid>hi("CursorLineNr",  s:gui03, s:gui01, s:cterm03, s:cterm01, "", "")
+call <sid>hi("CursorLineNr",  s:gui04, s:gui01, s:cterm04, s:cterm01, "", "")
 call <sid>hi("PMenu",         s:gui04, s:gui01, s:cterm04, s:cterm01, "none", "")
 call <sid>hi("PMenuSel",      s:gui01, s:gui04, s:cterm01, s:cterm04, "", "")
 call <sid>hi("TabLine",       s:gui03, s:gui01, s:cterm03, s:cterm01, "none", "")
@@ -221,6 +247,22 @@ call <sid>hi("htmlTag",     s:gui05, "", s:cterm05, "", "", "")
 call <sid>hi("javaScript",        s:gui05, "", s:cterm05, "", "", "")
 call <sid>hi("javaScriptBraces",  s:gui05, "", s:cterm05, "", "", "")
 call <sid>hi("javaScriptNumber",  s:gui09, "", s:cterm09, "", "", "")
+" pangloss/vim-javascript highlighting
+call <sid>hi("jsOperator",          s:gui0D, "", s:cterm0D, "", "", "")
+call <sid>hi("jsStatement",         s:gui0E, "", s:cterm0E, "", "", "")
+call <sid>hi("jsReturn",            s:gui0E, "", s:cterm0E, "", "", "")
+call <sid>hi("jsThis",              s:gui08, "", s:cterm08, "", "", "")
+call <sid>hi("jsClassDefinition",   s:gui0A, "", s:cterm0A, "", "", "")
+call <sid>hi("jsFunction",          s:gui0E, "", s:cterm0E, "", "", "")
+call <sid>hi("jsFuncName",          s:gui0D, "", s:cterm0D, "", "", "")
+call <sid>hi("jsFuncCall",          s:gui0D, "", s:cterm0D, "", "", "")
+call <sid>hi("jsClassFuncName",     s:gui0D, "", s:cterm0D, "", "", "")
+call <sid>hi("jsClassMethodType",   s:gui0E, "", s:cterm0E, "", "", "")
+call <sid>hi("jsRegexpString",      s:gui0C, "", s:cterm0C, "", "", "")
+call <sid>hi("jsGlobalObjects",     s:gui0A, "", s:cterm0A, "", "", "")
+call <sid>hi("jsGlobalNodeObjects", s:gui0A, "", s:cterm0A, "", "", "")
+call <sid>hi("jsExceptions",        s:gui0A, "", s:cterm0A, "", "", "")
+call <sid>hi("jsBuiltins",          s:gui0A, "", s:cterm0A, "", "", "")
 
 " Mail highlighting
 call <sid>hi("mailQuoted1",  s:gui0A, "", s:cterm0A, "", "", "")
